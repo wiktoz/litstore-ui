@@ -1,0 +1,29 @@
+{
+    "Home": {
+        "welcome": "Halo!",
+        "metadata": {
+            "title": "Litstore.pl - Halo",
+            "description": ""
+        }
+    },
+
+    "Navbar": {
+        "sign_in": "Eintragen",
+        "create_account": "Konto erstellen",
+        "logout": "Abmelden"
+    },
+  
+    "Footer": {
+        "information": "Information",
+        "privacy_policy": "Datenschutzbestimmungen",
+        "terms_conditions": "Bedingungen und Konditionen",
+        "contact": "Kontakt",
+    
+        "customer_service": "Kundenbetreuung",
+        "delivery_payments": "Lieferung und Zahlungen",
+        "returns_refunds": "Rückgabe und Rückerstattung",
+    
+        "helpful_links": "Hilfreiche Links",
+        "faq": "FAQs"
+    }
+}
