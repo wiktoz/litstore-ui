@@ -34,10 +34,10 @@ export default function Slider(){
     }, []);
 
     return(
-        <div className="w-full z-0">
-            <div className="w-full overflow-hidden relative">
+        <div className="h-full z-0">
+            <div className="h-full overflow-hidden relative">
                 <motion.div
-                    className="flex flex-nowrap"
+                    className="h-full flex flex-nowrap"
                     animate={{
                         x: `calc(${-index} * 100%)`
                     }}
@@ -45,10 +45,10 @@ export default function Slider(){
                 >
                     {slides.map((item, index) => (
                         <div
-                            className="min-w-full basis-full"
+                            className={"min-w-full basis-full bg-cover bg-center"}
+                            style={{ backgroundImage: `url(${item.link})` }}
                             key={index}
                         >
-                            <img src={item.link}></img>
                         </div>
                     ))}
                 </motion.div>

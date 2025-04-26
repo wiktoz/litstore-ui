@@ -1,6 +1,26 @@
 import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios"
 import Cookies from "js-cookie"
-import Router from "next/router"
+
+export class AuthError extends Error {
+  constructor(message: string = "Unauthorized") {
+    super(message)
+    this.name = "Auth Error"
+  }
+}
+
+export class ServerError extends Error {
+  constructor(message: string = "Server error") {
+    super(message)
+    this.name = "Server Error"
+  }
+}
+
+export class NetworkError extends Error {
+  constructor(message: string = "Network error") {
+    super(message)
+    this.name = "Network Error"
+  }
+}
 
 const api: AxiosInstance = axios.create({
   baseURL: "http://localhost:8000/api/v1",
@@ -31,6 +51,10 @@ api.interceptors.response.use((response: AxiosResponse): AxiosResponse => respon
   async (error) => {
     const originalRequest = error.config;
 
+    if (!error.response) {
+      throw new NetworkError("Unable to reach the server");
+    }
+
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
@@ -55,8 +79,7 @@ api.interceptors.response.use((response: AxiosResponse): AxiosResponse => respon
           return api(originalRequest)
         }
       } catch (refreshError) {
-        console.error("Token refresh failed:", refreshError)
-        Router.push("/auth/sign-in")
+        throw new AuthError("Token cannot be refreshed")
       } finally {
         isRefreshing = false;
       }
@@ -67,3 +90,5 @@ api.interceptors.response.use((response: AxiosResponse): AxiosResponse => respon
 );
 
 export default api
+
+export const fetcher = (url: string) => api.get(url).then((res) => res.data)

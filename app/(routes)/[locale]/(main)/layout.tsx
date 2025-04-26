@@ -17,12 +17,8 @@ export default function ShopLayout({children}:{children: ReactElement}) {
                                 <Navbar/>
                             </div>
 
-                            <div className="container mx-auto mb-auto grow bg-white">
-                                <div className="w-full h-full rounded">
-                                    <div className="container">
-                                        {children}
-                                    </div>
-                                </div>
+                            <div className="mx-auto mb-auto grow bg-white">
+                                {children}
                             </div>
                             <Footer/>
                         </div>

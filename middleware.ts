@@ -23,12 +23,12 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 
   // If no access token, redirect to login
   if (!accessToken) {
-    url.pathname = `/${routing.defaultLocale}/login`;
+    url.pathname = `/${routing.defaultLocale}/auth/sign-in`;
     return NextResponse.redirect(url);
   }
 
   // 3. Ask backend to verify user session and role
-  const verifyResponse = await fetch('http://localhost:8000/api/v1/auth/verify', {
+  const verifyResponse = await fetch('http://localhost:8000/api/v1/users/me', {
     method: 'GET',
     headers: {
       'Cookie': `accessToken=${accessToken}`,
@@ -37,7 +37,7 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 
   if (!verifyResponse.ok) {
     // If verification fails, redirect to login
-    url.pathname = `/${routing.defaultLocale}/login`;
+    url.pathname = `/${routing.defaultLocale}/auth/sign-in`;
     return NextResponse.redirect(url);
   }
 
@@ -46,7 +46,7 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 
   // 5. Role-based authorization
   if (pathname.includes('/admin') && user.role !== 'admin') {
-    url.pathname = `/${routing.defaultLocale}/login`;
+    url.pathname = `/${routing.defaultLocale}/auth/sign-in`;
     return NextResponse.redirect(url);
   }
 

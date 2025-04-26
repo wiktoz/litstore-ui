@@ -18,12 +18,14 @@ interface AddressInterface {
 }
 
 interface CategoryInterface {
-    readonly _id: string,
+    readonly id: string,
     name: string,
     description: string,
     seo_description?: string,
     bg_photo?: string,
     active: boolean,
+    display_navbar: boolean,
+    display_footer: boolean,
     readonly slug: string
 }
 

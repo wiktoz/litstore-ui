@@ -1,7 +1,7 @@
 'use client'
 
 import {useContext, createContext, ReactNode, useState} from "react"
-import Cookies from "js-cookie";
+import Cookies from "js-cookie"
 
 const ShoppingCartContext = createContext<ShoppingCartContextType | undefined>(undefined)
 
@@ -13,7 +13,7 @@ interface Props {
     children: ReactNode
 }
 
-const defaultBuyer:CartBuyerInterface = {
+const defaultBuyer: CartBuyerInterface = {
     city: "",
     email: "",
     house: "",
@@ -23,7 +23,7 @@ const defaultBuyer:CartBuyerInterface = {
     surname: ""
 }
 
-const defaultDelivery:CartDeliveryInterface = {
+const defaultDelivery: CartDeliveryInterface = {
     city: "",
     email: "",
     house: "",
@@ -77,11 +77,9 @@ const ShoppingCartProvider = ({children}:Props) => {
     }
 
     function increaseQty(id: string){
-        console.log("here")
         if(!cartItems)
             return
 
-        console.log("not here")
         const item = cartItems.find((item: CartItemInterface) => item.item_id === id)
 
         if(!item){

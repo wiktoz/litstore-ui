@@ -8,10 +8,10 @@ const Home = () => {
     
     return (
       <>
-        <div>
+        <div className='h-screen'>
           <Slider/>
         </div>
-        <div className='py-8'>
+        <div className='container mx-auto py-8'>
             <p className="text-3xl font-bold tracking-tight my-8">
                 <span className="bg-gray-900 text-white pl-4 pr-1">New</span>
                 <span className="text-gray-900">Arrivals</span>

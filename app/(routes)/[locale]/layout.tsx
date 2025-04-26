@@ -2,6 +2,7 @@ import {NextIntlClientProvider} from 'next-intl'
 import {getMessages} from 'next-intl/server'
 import {notFound} from 'next/navigation'
 import {routing} from '@/i18n/routing'
+import ShoppingCartProvider from '@/app/contexts/ShoppingCart'
 import "@/app/css/globals.css"
 
 interface LayoutInterface {
@@ -22,7 +23,9 @@ export default async function LocaleLayout({children, params}:LayoutInterface) {
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ShoppingCartProvider>
+            {children}
+          </ShoppingCartProvider>
         </NextIntlClientProvider>
       </body>
     </html>
