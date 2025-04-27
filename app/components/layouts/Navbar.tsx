@@ -13,7 +13,11 @@ import { Link } from '@/i18n/routing'
 import { useShoppingCart } from "@/app/contexts/ShoppingCart"
 import Error from '../errors/Error'
 
-export default function Navbar() {
+interface NavbarInterface {
+  transparency: boolean
+}
+
+export default function Navbar({transparency}:NavbarInterface) {
   const [open, setOpen] = useState<boolean>(false)
   const {cartQty} = useShoppingCart() as ShoppingCartContextType
 
@@ -21,7 +25,7 @@ export default function Navbar() {
   const { data: categories, error: categoriesError, isLoading: isCategoryLoading } = useSWR<CategoryInterface[]>('/categories/all', fetcher)
 
   return (
-    <div className={"bg-black text-gray-200 " + (open ? "bg-opacity-60" : "bg-opacity-30")}>
+    <div className={transparency ? ("bg-black text-gray-200 " + (open ? "bg-opacity-60" : "bg-opacity-30")) : ("bg-gray-100 text-gray-600")}>
       {/*<MobileNavbar categories={categories ? categories : []} open={open} setOpen={setOpen}/>*/}
       {/* Standard Menu */}
       <header className="relative">
@@ -42,8 +46,8 @@ export default function Navbar() {
               <div className="mx-4 flex lg:ml-0 hover:cursor-pointer">
                   <span className="sr-only">Logo</span>
                     <Image
-                      src="/img/litstore.png"
-                      className="h-5 w-auto align-bottom opacity-80"
+                      src={transparency ? "/img/litstore.png" : "/img/litstore-black.png"}
+                      className="h-4 w-auto align-bottom opacity-90"
                       width="0"
                       height="0"
                       sizes="100vw"
@@ -57,7 +61,7 @@ export default function Navbar() {
                 {
                   isCategoryLoading ? <Spinner/> :
                   categoriesError ? <>Err</> :
-                  <div className='flex gap-4 text-sm'>
+                  <div className='flex gap-5 text-sm'>
                     {
                       categories && categories.filter((category) => category.display_navbar).slice(0, 5).map(category => {
                         return(

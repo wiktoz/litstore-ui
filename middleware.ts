@@ -57,7 +57,7 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 export const config = {
   matcher: [
     '/',
-    '/(fr|en|de)/:path*',
+    '/(fr|en|de|pl)/:path*',
     '/admin/:path*',
     '/user/:path*',
   ],

@@ -32,7 +32,7 @@ const Input = ({id, title, type, value, autoComplete, errors, register, setter}:
                     "focus:outline-none focus:border focus:border-gray-800 block ring-0 focus:ring-0 " +
                     (errors ? errors[id] ? "border-red-600" : "" : "")}
             />
-            <div className="text-red-600 text-xs">{ errors ? errors[id]?.message : ""}</div>
+            <div className="text-red-600 text-xs text-right">{ errors ? errors[id]?.message : ""}</div>
         </div>
     )
 }

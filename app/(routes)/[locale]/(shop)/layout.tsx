@@ -12,12 +12,12 @@ export default function ShopLayout({children}:{children: ReactElement}) {
             <Fragment>
                 <div className="flex flex-col h-screen justify-between font-sans">
                     <Transition>
-                        <div className={"h-full relative"}>
-                            <div className={"fixed top-0 z-40 w-full"}>
-                                <Navbar transparency={true}/>
+                        <div className={"flex flex-col h-full relative"}>
+                            <div className={"sticky top-0 z-40 w-full"}>
+                                <Navbar transparency={false}/>
                             </div>
 
-                            <div className="mx-auto mb-auto grow bg-white">
+                            <div className="grow my-auto bg-white min-h-[50vh] flex items-center justify-center">
                                 {children}
                             </div>
                             <Footer/>

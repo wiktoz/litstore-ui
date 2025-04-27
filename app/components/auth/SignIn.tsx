@@ -39,8 +39,8 @@ const SignIn = () => {
         <div className="flex w-full items-center justify-center py-12 px-2 sm:px-6 lg:px-8">
             <div className="w-full max-w-md space-y-4">
                 <div>
-                    <h2 className="text-xl font-bold text-gray-800">
-                    Sign In
+                    <h2 className="text-2xl font-bold text-gray-800">
+                        Sign In
                     </h2>
                 </div>
                 <div className="-space-y-px rounded-md shadow-sm">
@@ -69,7 +69,7 @@ const SignIn = () => {
                                 register={register}
                             />
                         </div>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between my-2">
                             <div className="text-xs">
                                 <Link href={"/auth/password/reset"} className="font-medium text-gray-600 hover:text-gray-500">
                                 Forgot your password?

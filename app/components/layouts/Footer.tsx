@@ -9,11 +9,11 @@ export default function Footer(){
 
     return(
         <footer className="bg-gray-100 mt-16">
-            <div className="mx-auto space-y-12 py-16 container">
+            <div className="space-y-12 py-12 container px-6 mx-auto">
                 <div className="flex items-center justify-between">
                     <Image 
                         src="/img/litstore-black.png"
-                        className="mr-3 h-3 w-auto"
+                        className="mr-3 h-4 w-auto"
                         width="0"
                         height="0"
                         sizes="100vw"
@@ -58,7 +58,7 @@ export default function Footer(){
                 </div>
 
                 <div
-                className="text-sm grid grid-cols-1 gap-8 border-t border-gray-100 pt-12 sm:grid-cols-2 lg:grid-cols-4"
+                className="text-sm grid grid-cols-1 gap-8 border-t border-gray-100 pt-8 sm:grid-cols-2 lg:grid-cols-4"
                 >
                 <div>
                     <p className="font-bold text-gray-800">{t('information')}</p>
