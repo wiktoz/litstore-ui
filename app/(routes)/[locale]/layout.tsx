@@ -4,11 +4,6 @@ import {notFound} from 'next/navigation'
 import {routing} from '@/i18n/routing'
 import ShoppingCartProvider from '@/app/contexts/ShoppingCart'
 import "@/app/css/globals.css"
-
-interface LayoutInterface {
-    children: React.ReactNode
-    params: Promise<{ locale: string }>
-}
  
 export default async function LocaleLayout({children, params}:LayoutInterface) {
   const { locale } = await params
