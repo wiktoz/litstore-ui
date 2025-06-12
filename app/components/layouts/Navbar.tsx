@@ -22,7 +22,7 @@ export default function Navbar({transparency}:NavbarInterface) {
   const {cartQty} = useShoppingCart() as ShoppingCartContextType
 
   const { data: user, error: userError, isLoading: isUserLoading } = useSWR<UserInterface>('/users/me', fetcher, {errorRetryInterval: 10000, errorRetryCount: 5})
-  const { data: categories, error: categoriesError, isLoading: isCategoryLoading } = useSWR<CategoryInterface[]>('/categories/all', fetcher)
+  const { data: categories, error: categoriesError, isLoading: isCategoryLoading } = useSWR<CategoryInterface[]>('/categories/all', fetcher, {errorRetryInterval: 10000, errorRetryCount: 5})
 
   return (
     <div className={transparency ? ("bg-black text-gray-200 " + (open ? "bg-opacity-60" : "bg-opacity-30")) : ("bg-gray-100 text-gray-600")}>
@@ -60,7 +60,7 @@ export default function Navbar({transparency}:NavbarInterface) {
               <div className="flex items-center mx-4">
                 {
                   isCategoryLoading ? <Spinner/> :
-                  categoriesError ? <>Err</> :
+                  categoriesError ? <Error error={categoriesError}/> :
                   <div className='flex gap-5 text-sm'>
                     {
                       categories && categories.filter((category) => category.display_navbar).slice(0, 5).map(category => {

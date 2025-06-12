@@ -2,6 +2,7 @@ import {getTranslations} from 'next-intl/server'
 import {useTranslations} from 'next-intl'
 
 import Slider from "@/app/components/sliders/Slider"
+import Image from 'next/image'
 
 const Home = () => {
     const t = useTranslations('Home')
@@ -19,6 +20,7 @@ const Home = () => {
             <div>
               Hi im at {t('welcome')}
             </div>
+            <img src={"https://assets.litstore.pl/aaa.jpg"} alt={"misbhv"}/>
             <div className="mt-10 flex">
                 <p className="text-xs text-gray-300 font-light w-2/5">
                     LitStore is registered trademark. This is a demonstrative version for e-commerce software. All
