@@ -34,10 +34,10 @@ export default function Slider(){
     }, []);
 
     return(
-        <div className="h-full z-0">
-            <div className="h-full overflow-hidden relative">
+        <div className="h-full w-full z-0">
+            <div className="h-full w-full overflow-hidden relative">
                 <motion.div
-                    className="h-full flex flex-nowrap"
+                    className="h-full w-full flex flex-nowrap"
                     animate={{
                         x: `calc(${-index} * 100%)`
                     }}

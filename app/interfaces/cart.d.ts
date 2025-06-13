@@ -7,14 +7,16 @@ interface UserInterface extends AddressInterface {
 }
 
 interface AddressInterface {
-    email: string,
+    readonly id: string,
     name: string,
     surname: string,
     street: string,
     house: string,
     flat?: string,
     post_code: string,
-    city: string
+    city: string,
+    country: string,
+    phone: string
 }
 
 interface CategoryInterface {
@@ -120,7 +122,7 @@ interface OrderItemsInterface {
 }
 
 interface VariantOptionInterface {
-    readonly _id: string,
+    readonly id: string,
     name: string
 }
 

@@ -25,7 +25,7 @@ export default function Navbar({transparency}:NavbarInterface) {
   const { data: categories, error: categoriesError, isLoading: isCategoryLoading } = useSWR<CategoryInterface[]>('/categories/all', fetcher, {errorRetryInterval: 10000, errorRetryCount: 5})
 
   return (
-    <div className={transparency ? ("bg-black text-gray-200 " + (open ? "bg-opacity-60" : "bg-opacity-30")) : ("bg-gray-100 text-gray-600")}>
+    <div className={transparency ? ("bg-black text-gray-200 " + (open ? "bg-opacity-60" : "bg-opacity-30")) : ("border-b bg-white text-gray-600")}>
       {/*<MobileNavbar categories={categories ? categories : []} open={open} setOpen={setOpen}/>*/}
       {/* Standard Menu */}
       <header className="relative">
@@ -57,7 +57,7 @@ export default function Navbar({transparency}:NavbarInterface) {
               </Link>
 
               {/* Flyout menus */}
-              <div className="flex items-center mx-4">
+              <div className="hidden items-center mx-4 md:block">
                 {
                   isCategoryLoading ? <Spinner/> :
                   categoriesError ? <Error error={categoriesError}/> :

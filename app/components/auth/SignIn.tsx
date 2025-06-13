@@ -21,7 +21,7 @@ const SignIn = () => {
     const handleSignIn = async (data: SignInFormInterface) => {
         setIsLoading(true)
 
-        api("/auth/login", { 
+        await api("/auth/login", { 
             method: "POST",
             data
         }).then(_ => {
@@ -31,6 +31,8 @@ const SignIn = () => {
                 type: "manual",
                 message: "Incorrect e-mail or password",
             })
+
+            setIsLoading(false)
         })
     }
 

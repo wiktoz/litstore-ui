@@ -8,7 +8,7 @@ export default function Footer(){
     const t = useTranslations('Footer')
 
     return(
-        <footer className="bg-gray-100 mt-16">
+        <footer className="border-t mt-16">
             <div className="space-y-12 py-12 container px-6 mx-auto">
                 <div className="flex items-center justify-between">
                     <Image 
