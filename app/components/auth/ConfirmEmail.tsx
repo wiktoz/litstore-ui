@@ -12,23 +12,25 @@ const ConfirmEmail = ({token}:{token:string}) => {
 
     const Router = useRouter()
 
-    const resendEmail = async () => {
-        api("/auth/email/verify", { 
-            method: "POST",
-            data: {
-                token: token,
-            }
-        }).then(_ => {
-            setIsSuccess(true)
-            setIsLoading(false)
-            setCountdown(10)
-        }).catch(_ => {
-            setIsSuccess(false)
-            setIsLoading(false)
-        })
-    }
+    
 
     useEffect(() => {
+        const resendEmail = async () => {
+            api("/auth/email/verify", { 
+                method: "POST",
+                data: {
+                    token: token,
+                }
+            }).then(() => {
+                setIsSuccess(true)
+                setIsLoading(false)
+                setCountdown(10)
+            }).catch(() => {
+                setIsSuccess(false)
+                setIsLoading(false)
+            })
+        }
+        
         resendEmail()
     }, [token])
 

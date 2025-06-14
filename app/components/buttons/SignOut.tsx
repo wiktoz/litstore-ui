@@ -11,11 +11,9 @@ const SignOut = () => {
     const handleSignOut = async () => {
         api("/auth/logout", { 
             method: "POST",
-        }).then(_ => {
+        }).then(() => {
             mutate(() => true)
             Router.push('/')
-        }).catch(_ => {
-
         })
     }
 

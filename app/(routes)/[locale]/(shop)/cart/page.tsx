@@ -1,3 +1,5 @@
+'use client'
+
 import { useShoppingCart } from "@/app/contexts/ShoppingCart"
 import { motion } from "framer-motion"
 import { ShoppingBagIcon } from "@heroicons/react/24/outline"

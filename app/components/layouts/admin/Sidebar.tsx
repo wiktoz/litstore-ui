@@ -8,7 +8,7 @@ import Accordion from "@/app/components/lists/Accordion"
 import { motion, AnimatePresence } from "framer-motion"
 
 import {
-    Bars3Icon, XMarkIcon,
+    Bars3Icon,
     ReceiptPercentIcon,
     BuildingStorefrontIcon,
     RectangleStackIcon,

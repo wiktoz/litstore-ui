@@ -29,7 +29,7 @@ const SignUp = () => {
                 email: data.email,
                 password: data.password
             }
-        }).then(_ => {
+        }).then(() => {
             setIsSent(true)
             setIsLoading(false)
         }).catch(err => {
@@ -50,10 +50,10 @@ const SignUp = () => {
             data: {
                 email: email,
             }
-        }).then(_ => {
+        }).then(() => {
             setResendMessage("Verification email resent!")
             setIsLoading(false)
-        }).catch(_ => {
+        }).catch(() => {
             setIsLoading(false)
         })
     }
@@ -81,7 +81,7 @@ const SignUp = () => {
                         </div>
                         :
                         <div className="flex items-center justify-center gap-1">
-                            <p>Didn't receive the email?</p>
+                            <p>Didn&apos;t receive the email?</p>
                             {
                                 isLoading ? 
                                 <Spinner/>
@@ -104,7 +104,7 @@ const SignUp = () => {
                 <h1 className="text-gray-800 font-bold text-2xl mb-4">
                     Sign Up
                 </h1>
-                <p className="text-xs text-gray-500 text-left">We're excited to have you! Create your account and join the community.</p>
+                <p className="text-xs text-gray-500 text-left">We&apos;re excited to have you! Create your account and join the community.</p>
             </div>
             
 

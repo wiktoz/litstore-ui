@@ -1,10 +1,10 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { usePathname } from 'next/navigation'
+// import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
 
-const variants = {
+/*const variants = {
   out: {
     opacity: 0,
     transition: {
@@ -17,10 +17,10 @@ const variants = {
       duration: 0.5,
     }
   }
-};
+};*/
 
 const Transition = ({ children }: { children: ReactNode }) => {
-  const pathname = usePathname();
+  //const pathname = usePathname();
 
   return (
     <AnimatePresence mode="wait">

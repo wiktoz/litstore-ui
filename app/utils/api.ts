@@ -30,7 +30,7 @@ const api: AxiosInstance = axios.create({
 let isRefreshing = false;
 let failedQueue: Array<() => void> = [];
 
-const processQueue = (error: any = null) => {
+const processQueue = () => {
   failedQueue.forEach((callback) => callback());
   failedQueue = [];
 };
@@ -79,7 +79,7 @@ api.interceptors.response.use((response: AxiosResponse): AxiosResponse => respon
           return api(originalRequest)
         }
       } catch (refreshError) {
-            throw new AuthError("Token cannot be refreshed")
+            throw new AuthError("Token cannot be refreshed" + refreshError)
       } finally {
             isRefreshing = false;
       }

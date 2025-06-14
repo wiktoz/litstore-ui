@@ -2,7 +2,6 @@ import {getTranslations} from 'next-intl/server'
 import {useTranslations} from 'next-intl'
 
 import Slider from "@/app/components/sliders/Slider"
-import Image from 'next/image'
 
 const Home = () => {
     const t = useTranslations('Home')

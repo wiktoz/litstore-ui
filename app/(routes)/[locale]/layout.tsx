@@ -5,15 +5,18 @@ import {routing} from '@/i18n/routing'
 import ShoppingCartProvider from '@/app/contexts/ShoppingCart'
 import "@/app/css/globals.css"
 import { AuthProvider } from '@/app/contexts/Auth'
- 
-export default async function LocaleLayout({children, params}:LayoutInterface) {
-  const { locale } = await params
+import { locales } from '@/app/utils/dictionaries'
 
-  if (!routing.locales.includes(locale as any)) {
-    return notFound()
-  }
+type Locale = typeof locales[number]
+
+export default async function LocaleLayout({children, params}:LayoutInterface) {
+    const { locale } = await params
+
+    if (!routing.locales.includes(locale as Locale)) {
+        return notFound()
+    }
  
-  const messages = await getMessages()
+    const messages = await getMessages()
  
     return (
         <html lang={locale}>

@@ -6,18 +6,18 @@ import { useRouter, usePathname } from 'next/navigation'
 import api, { AuthError, fetcher } from '../utils/api'
 
 interface User {
-  id: number
-  name: string
-  email: string
+    id: number
+    name: string
+    email: string
 }
 
 interface AuthContextType {
-  user: User | null
-  loading: boolean
-  error: any
-  login: (email: string, password: string) => Promise<void>
-  logout: () => Promise<void>
-  refreshUser: () => Promise<void>
+    user: User | null
+    loading: boolean
+    error: Error
+    login: (email: string, password: string) => Promise<void>
+    logout: () => Promise<void>
+    refreshUser: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | null>(null)
@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     return (
         <AuthContext.Provider value={{ user: user || null, loading: isLoading, error: error, login, logout, refreshUser }}>
-        {children}
+            {children}
         </AuthContext.Provider>
     )
 }

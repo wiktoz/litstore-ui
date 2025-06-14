@@ -1,5 +1,5 @@
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline"
-import { useState } from "react"
+//import { useState } from "react"
 import api from "@/app/utils/api";
 
 function splitBy3WithSpace(str: string): string {
@@ -11,18 +11,19 @@ function splitBy3WithSpace(str: string): string {
 }
 
 type AddressDisplayProps = AddressInterface & {
-  mutate: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mutate: any;
 };
 
 const AddressDisplay = ({id, name, surname, street, house, flat, post_code, city, phone, country, mutate}:AddressDisplayProps) => {
-    const [isEditing, setIsEditing] = useState<boolean>(false)
+    // const [isEditing, setIsEditing] = useState<boolean>(false)
 
     const deleteAddress = async () => {
         await api("/users/address/" + id, { 
             method: "DELETE"
-        }).then(_ => {
+        }).then(() => {
             mutate()
-        }).catch(_ => {
+        }).catch(() => {
 
         })
     }

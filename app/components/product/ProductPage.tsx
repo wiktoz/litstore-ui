@@ -15,20 +15,22 @@ enum SelectType {
     Button = "button"
 }
 
+interface ImageInterface {
+    order_index: number,
+    image: {
+        url: string,
+        mime_type: string,
+        size: number
+    }
+}
+
 interface ProductInterface {
     name: string,
     manufacturer: string,
     new: boolean,
     active: boolean,
     slug: string,
-    images: [{
-        order_index: number,
-        image: {
-            url: string,
-            mime_type: string,
-            size: number
-        }
-    }],
+    images: ImageInterface[],
     variants: [{
         id: string,
         name: string,
@@ -59,7 +61,7 @@ interface VariantOption {
 }
 
 const ProductPage = ({slug}:ProductPageInterface) => {
-    const { data: product, error: productError, isLoading: productLoading } = useSWR<ProductInterface>('/products/slug/' + slug, fetcher, {errorRetryInterval: 10000, errorRetryCount: 5})
+    const { data: product } = useSWR<ProductInterface>('/products/slug/' + slug, fetcher, {errorRetryInterval: 10000, errorRetryCount: 5})
 
     const [selectedOptions, setSelectedOptions] = useState<VariantOption[]>([])
 
@@ -98,7 +100,7 @@ const ProductPage = ({slug}:ProductPageInterface) => {
             <div className="flex w-full md:w-auto md:h-[calc(100vh-8rem)] md:mx-0 self-start px-4">
                 {
                     product &&
-                    <Carousel items={product.images.map((item:any) => item.image.url)} />
+                    <Carousel items={product.images.map((item:ImageInterface) => item.image.url)} />
                 }
             </div>
             <div className="flex flex-col px-6 md:p-4 gap-2 justify-center">

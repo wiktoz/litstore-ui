@@ -22,10 +22,10 @@ const ResetPassword = () => {
         api("/auth/password/forgot", { 
             method: "POST",
             data
-        }).then(_ => {
+        }).then(() => {
             setIsSent(true)
             setIsLoading(false)
-        }).catch(_ => {
+        }).catch(() => {
             setError("root", {
                 type: "manual",
                 message: "Incorrect e-mail or password",

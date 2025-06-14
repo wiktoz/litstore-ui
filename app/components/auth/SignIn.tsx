@@ -26,13 +26,13 @@ const SignIn = () => {
         await api("/auth/login", { 
             method: "POST",
             data
-        }).then(_ => {
+        }).then(() => {
             mutate(() => true)
             
             Router.push('/pl/user/profile')
 
             setIsLoading(false)
-        }).catch(_ => {
+        }).catch(() => {
             setError("root", {
                 type: "manual",
                 message: "Incorrect e-mail or password",
@@ -87,7 +87,7 @@ const SignIn = () => {
             </form>
 
             <p className="mt-4 text-gray-500 text-sm">Forgot your password? <Link href={"/pl/auth/password/reset"} className="font-semibold text-black">Reset password.</Link></p>
-            <p className="mb-4 mt-2 text-gray-500 text-sm">Don't have an account? <Link href={"/pl/auth/sign-up"} className="font-semibold text-black">Sign Up.</Link></p>
+            <p className="mb-4 mt-2 text-gray-500 text-sm">Don&apos;t have an account? <Link href={"/pl/auth/sign-up"} className="font-semibold text-black">Sign Up.</Link></p>
         </div>
     )
 }
