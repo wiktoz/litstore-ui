@@ -14,6 +14,9 @@ interface Props {
 }
 
 const defaultBuyer: CartBuyerInterface = {
+    id: "",
+    country: "",
+    phone: "",
     city: "",
     email: "",
     house: "",
@@ -24,8 +27,10 @@ const defaultBuyer: CartBuyerInterface = {
 }
 
 const defaultDelivery: CartDeliveryInterface = {
+    id: "",
+    country: "",
+    phone: "",
     city: "",
-    email: "",
     house: "",
     name: "",
     post_code: "",

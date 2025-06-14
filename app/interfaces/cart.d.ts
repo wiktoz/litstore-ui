@@ -52,12 +52,10 @@ interface DeliveryInterface {
 }
 
 interface VariantInterface {
-    readonly _id: string
-    name: string,
+    readonly id: string
     display_name: string,
-    select_option: string,
-    options: [VariantOptionInterface],
-    readonly slug: string
+    select_type: string,
+    options: [VariantOptionInterface]
 }
 
 interface BuyerInterface extends AddressInterface {

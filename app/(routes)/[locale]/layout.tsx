@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation'
 import {routing} from '@/i18n/routing'
 import ShoppingCartProvider from '@/app/contexts/ShoppingCart'
 import "@/app/css/globals.css"
+import { AuthProvider } from '@/app/contexts/Auth'
  
 export default async function LocaleLayout({children, params}:LayoutInterface) {
   const { locale } = await params
@@ -14,15 +15,17 @@ export default async function LocaleLayout({children, params}:LayoutInterface) {
  
   const messages = await getMessages()
  
-  return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          <ShoppingCartProvider>
-            {children}
-          </ShoppingCartProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  )
+    return (
+        <html lang={locale}>
+        <body>
+            <AuthProvider>
+                <NextIntlClientProvider messages={messages}>
+                    <ShoppingCartProvider>
+                        {children}
+                    </ShoppingCartProvider>
+                </NextIntlClientProvider>
+            </AuthProvider>
+        </body>
+        </html>
+    )
 }

@@ -4,13 +4,12 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline"
 import {CheckIcon} from "@heroicons/react/24/outline"
 
 interface Props {
-    variant: string,
-    options: VariantOptionInterface[],
+    variant: VariantInterface,
     pickOption: (variant_id:string, option_id:string) => void
     checkStock: (variant_id:string, option_id:string) => number
 }
 
-const OptionSelect = ({variant, options, pickOption, checkStock}:Props) => {
+const OptionSelect = ({variant, pickOption, checkStock}:Props) => {
     const [pickedOption, setPickedOption]
         = useState<VariantOptionInterface>()
 
@@ -18,9 +17,9 @@ const OptionSelect = ({variant, options, pickOption, checkStock}:Props) => {
 
     return(
         <AnimatePresence>
-        <motion.div className={"relative w-full transition-all"} onClick={() => setOpen(!open)} onBlur={() => setOpen(false)}>
+        <motion.div className={"relative w-full transition-all h-12"} onClick={() => setOpen(!open)} onBlur={() => setOpen(false)}>
             <motion.div
-                className={"flex flex-row items-center p-2 px-4 text-sm text-gray-500 border border-gray-500 hover:cursor-pointer "
+                className={"flex flex-row items-center p-2 px-4 text-sm text-gray-500 border border-black hover:cursor-pointer "
                     + (open ? "rounded-t-lg border-b-0" : "rounded-lg")}>
                 <div className={"grow"}>
                 {
@@ -29,7 +28,7 @@ const OptionSelect = ({variant, options, pickOption, checkStock}:Props) => {
                             {pickedOption.name}
                         </div> :
                         <div className={"text-xs"}>
-                            select size
+                            <span className="text-sm">{variant.display_name}</span>
                         </div>
 
                 }
@@ -59,11 +58,11 @@ const OptionSelect = ({variant, options, pickOption, checkStock}:Props) => {
                     exit={{ opacity: 0, height:0, y: -30}}
                 >
                 {
-                    options.map(option => {
+                    variant.options.map(option => {
                         return(
                             <motion.div key={option.id} className={"mx-1"}>
                                 {
-                                    checkStock(variant, option.id) > 0 ?
+                                    checkStock(variant.id, option.id) > 0 ?
                                         pickedOption && option.id === pickedOption.id ?
                                             <motion.div className={"flex flex-row items-center justify-between p-2 px-4 rounded-lg bg-black text-white font-semibold hover:cursor-pointer"}>
                                                 <div>{option.name}</div>
@@ -73,7 +72,7 @@ const OptionSelect = ({variant, options, pickOption, checkStock}:Props) => {
                                             <motion.div
                                                 onClick={() => {
                                                     setPickedOption(option);
-                                                    pickOption(variant, option.id)
+                                                    pickOption(variant.id, option.id)
                                                 }}
                                                 className={"p-2 px-4 rounded-lg hover:cursor-pointer hover:bg-gray-100"}
                                             >

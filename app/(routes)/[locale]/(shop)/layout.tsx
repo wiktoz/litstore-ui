@@ -10,14 +10,14 @@ export const metadata = {
 export default function ShopLayout({children}:{children: ReactElement}) {
     return (
             <Fragment>
-                <div className="flex flex-col h-screen justify-between font-sans">
+                <div className="flex flex-col justify-between font-sans bg-gray-50">
                     <Transition>
                         <div className={"flex flex-col h-full relative"}>
                             <div className={"sticky top-0 z-40 w-full"}>
                                 <Navbar transparency={false}/>
                             </div>
 
-                            <div className="grow m-auto bg-white flex flex-col justify-center px-2 py-12 container">
+                            <div className="grow m-auto flex flex-col justify-center px-2 py-8 container min-h-[50vh]">
                                 {children}
                             </div>
                             <Footer/>

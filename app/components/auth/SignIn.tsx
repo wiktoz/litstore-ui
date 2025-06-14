@@ -2,19 +2,21 @@
 
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import Spinner from "@/app/components/loaders/Spinner"
 import Link from "next/link"
 import api from "@/app/utils/api"
 import Input from "@/app/components/forms/Input"
 import { useForm } from "react-hook-form"
 import { resolver } from "@/app/validations/SignInForm"
+import Button from "../buttons/Button"
+import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/outline"
+import { mutate } from "swr"
 
 const SignIn = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const { register, handleSubmit, setError, formState: {errors} } = useForm<SignInFormInterface>({resolver})
+    const { register, handleSubmit, setError, setValue, formState: {errors} } = useForm<SignInFormInterface>({resolver})
 
     const Router = useRouter()
 
@@ -25,7 +27,11 @@ const SignIn = () => {
             method: "POST",
             data
         }).then(_ => {
-            Router.push('/user/profile')
+            mutate(() => true)
+            
+            Router.push('/pl/user/profile')
+
+            setIsLoading(false)
         }).catch(_ => {
             setError("root", {
                 type: "manual",
@@ -37,62 +43,52 @@ const SignIn = () => {
     }
 
     return (
-        <>
-        <div className="flex w-full items-center justify-center py-12 px-2 sm:px-6 lg:px-8">
-            <div className="w-full max-w-md space-y-4">
-                <div>
-                    <h2 className="text-2xl font-bold text-gray-800">
-                        Sign In
-                    </h2>
-                </div>
-                <div className="-space-y-px rounded-md shadow-sm">
-                    <form onSubmit={handleSubmit(handleSignIn)}>
-                        <div>
-                            <Input 
-                                id="email"
-                                title="e-mail"
-                                autoComplete="email"
-                                type="email"
-                                value={email}
-                                setter={setEmail}
-                                errors={errors}
-                                register={register}
-                            />
-                        </div>
-                        <div>
-                            <Input
-                                id="password"
-                                title="password"
-                                autoComplete="current-password"
-                                type="password"
-                                value={password}
-                                setter={setPassword}
-                                errors={errors}
-                                register={register}
-                            />
-                        </div>
-                        <div className="flex items-center justify-between my-2">
-                            <div className="text-xs">
-                                <Link href={"/auth/password/reset"} className="font-medium text-gray-600 hover:text-gray-500">
-                                Forgot your password?
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <button
-                                type="submit"
-                                className={"w-full group relative flex justify-center rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-semibold text-white focus:outline-none " + (!email || !password || isLoading ? "opacity-70 hover:cursor-default hover:bg-gray-600" : "hover:bg-gray-700")}
-                            >
-                                {
-                                    isLoading ? <Spinner/> : "Sign in"
-                                }
-                            </button>
-                        </div>
-                    </form>
-                </div>
+        <div className="md:w-1/3 rounded-xl bg-white flex flex-col mx-auto p-10 py-16 border">
+            <div className="p-2 bg-gray-100 border rounded-full w-12 h-12 flex items-center justify-center mx-auto">
+                <ArrowRightEndOnRectangleIcon width={20} height={20}/>
             </div>
+            <div className="my-4 flex flex-col gap-4 text-center mb-8">
+                <h1 className="text-gray-800 font-bold text-2xl mb-4">
+                    Sign In
+                </h1>
+                <p className="text-xs text-gray-500 text-left">Welcome back — we missed you! Log in to pick up where you left off.</p>
+            </div>
+            
+
+            <form onSubmit={handleSubmit(handleSignIn)}>
+                <div>
+                    <Input<SignInFormInterface> 
+                        id="email"
+                        title="e-mail"
+                        autoComplete="email"
+                        type="text"
+                        value={email}
+                        setter={setEmail}
+                        errors={errors}
+                        register={register}
+                        setValue={setValue}
+                    />
+                </div>
+                <div>
+                    <Input<SignInFormInterface> 
+                        id="password"
+                        title="password"
+                        autoComplete="current-password"
+                        type="password"
+                        value={password}
+                        setter={setPassword}
+                        errors={errors}
+                        register={register}
+                        setValue={setValue}
+                    />
+                </div>
+
+                <Button isLoading={isLoading}>Sign In</Button>
+            </form>
+
+            <p className="mt-4 text-gray-500 text-sm">Forgot your password? <Link href={"/pl/auth/password/reset"} className="font-semibold text-black">Reset password.</Link></p>
+            <p className="mb-4 mt-2 text-gray-500 text-sm">Don't have an account? <Link href={"/pl/auth/sign-up"} className="font-semibold text-black">Sign Up.</Link></p>
         </div>
-        </>
     )
 }
 

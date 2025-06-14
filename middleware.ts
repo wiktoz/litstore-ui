@@ -18,26 +18,19 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
         }
     }
 
-    /*
-    // 2. Extract accessToken from cookies
-    const accessToken = req.cookies.get('accessToken')?.value;
     const url = req.nextUrl.clone();
-
-    // If no access token, redirect to login
-    if (!accessToken) {
-        url.pathname = `/${routing.defaultLocale}/auth/sign-in`;
-        return NextResponse.redirect(url);
-    }
+    const cookie = req.headers.get('cookie') || ''
 
     // 3. Ask backend to verify user session and role
     const verifyResponse = await fetch('http://localhost:8000/api/v1/users/me', {
         method: 'GET',
         headers: {
-        'Cookie': `accessToken=${accessToken}`,
-        },
+            cookie,  // forward the cookie from the client request
+        }
     });
 
     if (!verifyResponse.ok) {
+        console.log("verificaion failed")
         // If verification fails, redirect to login
         url.pathname = `/${routing.defaultLocale}/auth/sign-in`;
         return NextResponse.redirect(url);
@@ -47,11 +40,10 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
     const user = await verifyResponse.json();
 
     // 5. Role-based authorization
-    if (pathname.includes('/admin') && user.role !== 'admin') {
+    /**if (pathname.includes('/admin') && user.role !== 'admin') {
         url.pathname = `/${routing.defaultLocale}/auth/sign-in`;
         return NextResponse.redirect(url);
-    }
-        */
+    }*/
 
     // 6. If everything passes, return the i18n middleware response
     return intlResponse;

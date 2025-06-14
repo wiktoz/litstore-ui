@@ -12,6 +12,7 @@ import { Link } from '@/i18n/routing'
 
 import { useShoppingCart } from "@/app/contexts/ShoppingCart"
 import Error from '../errors/Error'
+import { useAuth } from '@/app/contexts/Auth'
 
 interface NavbarInterface {
   transparency: boolean
@@ -21,8 +22,9 @@ export default function Navbar({transparency}:NavbarInterface) {
   const [open, setOpen] = useState<boolean>(false)
   const {cartQty} = useShoppingCart() as ShoppingCartContextType
 
-  const { data: user, error: userError, isLoading: isUserLoading } = useSWR<UserInterface>('/users/me', fetcher, {errorRetryInterval: 10000, errorRetryCount: 5})
   const { data: categories, error: categoriesError, isLoading: isCategoryLoading } = useSWR<CategoryInterface[]>('/categories/all', fetcher, {errorRetryInterval: 10000, errorRetryCount: 5})
+
+  const { loading: isUserLoading, error: userError } = useAuth()
 
   return (
     <div className={transparency ? ("bg-black text-gray-200 " + (open ? "bg-opacity-60" : "bg-opacity-30")) : ("border-b bg-white text-gray-600")}>
@@ -94,7 +96,7 @@ export default function Navbar({transparency}:NavbarInterface) {
                         </p>
                       </Link>
                       <span className="h-4 w-px bg-gray-400" aria-hidden="true" />
-                      <Link href={"/auth/signup"}>
+                      <Link href={"/auth/sign-up"}>
                         <p className='hover:text-gray-400 hover:cursor-pointer'>
                           Create account
                         </p>

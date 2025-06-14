@@ -94,8 +94,8 @@ const ProductPage = ({slug}:ProductPageInterface) => {
     }
 
     return(
-        <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex w-screen md:w-auto md:h-[calc(100vh-4rem)] md:mx-0 self-start p-4">
+        <div className="flex flex-col md:flex-row gap-8 md:items-center md:justify-center">
+            <div className="flex w-full md:w-auto md:h-[calc(100vh-8rem)] md:mx-0 self-start px-4">
                 {
                     product &&
                     <Carousel items={product.images.map((item:any) => item.image.url)} />
@@ -120,8 +120,7 @@ const ProductPage = ({slug}:ProductPageInterface) => {
                             return(
                                 <OptionSelect 
                                     key={variant.id}
-                                    variant={variant.id} 
-                                    options={variant.options}
+                                    variant={variant} 
                                     pickOption={selectOption}
                                     checkStock={checkStock}
                                 />

@@ -20,7 +20,6 @@ const Home = () => {
             <div>
               Hi im at {t('welcome')}
             </div>
-            <img src={"https://assets.litstore.pl/aaa.jpg"} alt={"misbhv"}/>
             <div className="mt-10 flex">
                 <p className="text-xs text-gray-300 font-light w-2/5">
                     LitStore is registered trademark. This is a demonstrative version for e-commerce software. All
@@ -37,12 +36,12 @@ const Home = () => {
 export default Home
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
-  
-  const t = await getTranslations({ locale, namespace: 'Home.metadata' })
+    const { locale } = await params
+    
+    const t = await getTranslations({ locale, namespace: 'Home.metadata' })
 
-  return {
-    title: t('title'),
-    description: t('description')
-  };
+    return {
+        title: t('title'),
+        description: t('description')
+    };
 }

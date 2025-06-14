@@ -4,7 +4,7 @@ const UserPage = () => {
     
     return(
         <div className="flex flex-row gap-20">
-            <div className="w-1/4">
+            <div className="w-1/4 bg-white rounded-xl p-8 h-full">
                 <p className="text-gray-800 font-bold">My Account</p>
                 <div className="h-px rounded-full bg-gray-300 my-2"></div>
                 <div className="px-2 text-gray-500 text-sm flex flex-col gap-2 cursor-pointer">

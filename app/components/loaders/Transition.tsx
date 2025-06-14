@@ -25,12 +25,7 @@ const Transition = ({ children }: { children: ReactNode }) => {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={pathname}
-        variants={variants}
-        initial="out"
-        animate="in"
-        exit="out"
-        className="w-full h-full"
+        
       >
         {children}
       </motion.div>
@@ -39,3 +34,10 @@ const Transition = ({ children }: { children: ReactNode }) => {
 };
 
 export default Transition;
+
+/**key={pathname}
+        variants={variants}
+        initial="out"
+        animate="in"
+        exit="out"
+        className="w-full h-full" */

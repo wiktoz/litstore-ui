@@ -70,8 +70,8 @@ api.interceptors.response.use((response: AxiosResponse): AxiosResponse => respon
 
       try {
         const refreshResponse = await axios.post("http://localhost:8000/api/v1/auth/refresh-token",
-          {},
-          { withCredentials: true }
+            {},
+            { withCredentials: true }
         )
 
         if (refreshResponse.status === 200) {
@@ -79,9 +79,9 @@ api.interceptors.response.use((response: AxiosResponse): AxiosResponse => respon
           return api(originalRequest)
         }
       } catch (refreshError) {
-        throw new AuthError("Token cannot be refreshed")
+            throw new AuthError("Token cannot be refreshed")
       } finally {
-        isRefreshing = false;
+            isRefreshing = false;
       }
     }
 

@@ -8,3 +8,7 @@ interface SignUpFormInterface {
     password: string,
     repeat_password: string
 }
+
+interface ResetPasswordInterface {
+    email: string
+}
