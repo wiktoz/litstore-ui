@@ -12,3 +12,11 @@ interface SignUpFormInterface {
 interface ResetPasswordInterface {
     email: string
 }
+
+interface ProductInsertFormInterface {
+    name: string,
+    manufacturer: string,
+    new: boolean,
+    active: boolean,
+    date_range: boolean,
+}
