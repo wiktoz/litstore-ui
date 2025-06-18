@@ -3,8 +3,8 @@ import { PlusIcon } from "@heroicons/react/24/outline"
 const Header = () => {
     return(
         <div className="flex gap-4 bg-white rounded-xl p-4">
-            <div className="border rounded-xl p-1.5 h-10 w-10 flex items-center justify-center self-center">
-                <PlusIcon width={20} height={20}/>
+            <div className="border rounded-xl p-1.5 h-12 w-12 flex items-center justify-center self-center">
+                <PlusIcon width={26} height={26}/>
             </div>
             <div className="flex flex-col">
                 <h1 className="font-bold text-lg">Insert Product</h1>

@@ -91,7 +91,7 @@ const FileUpload = ({title, files, setFiles, multiple}:FileUploadInterface) => {
                                     >
 
                                         <div className={"flex flex-row items-center justify-between bg-gray-50 p-2 py-3"}>
-                                            <div className={"text-xs flex flex-row items-center gap-1"}>
+                                            <div className={"text-xs flex flex-row items-center gap-1 " + (i==0 && "font-semibold")}>
                                                 <PhotoIcon width={14} height={14}/>
                                                 {printFileName(file.name)}
                                             </div>

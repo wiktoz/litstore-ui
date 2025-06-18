@@ -1,14 +1,14 @@
 import { Dispatch, SetStateAction, useState } from "react"
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"
 
-export interface CalendarInterface {
+export interface RangeCalendarInterface {
     startDate: Date | null,
     setStartDate: Dispatch<SetStateAction<Date | null>>,
     endDate: Date | null,
     setEndDate: Dispatch<SetStateAction<Date | null>>
 }
 
-export default function Calendar({startDate, setStartDate, endDate, setEndDate}:CalendarInterface){
+export default function RangeCalendar({startDate, setStartDate, endDate, setEndDate}:RangeCalendarInterface){
     const datetime = new Date()
     const date = new Date(datetime.getFullYear(), datetime.getMonth(), datetime.getDate())
 
@@ -55,7 +55,6 @@ export default function Calendar({startDate, setStartDate, endDate, setEndDate}:
         if(!startDate || (pickedDate < startDate)){
             setStartDate(pickedDate)
             setEndDate(null)
-
             return
         }
 
@@ -79,6 +78,7 @@ export default function Calendar({startDate, setStartDate, endDate, setEndDate}:
             cmonth.push(i < first ? null : i-first+1)
         }
 
+        console.log(cmonth)
         return cmonth
     }
 
@@ -169,22 +169,24 @@ export default function Calendar({startDate, setStartDate, endDate, setEndDate}:
 
     return(
         <div className="flex flex-row flex-wrap">
-            <div className="flex flex-row justify-between justify-items-center items-center mb-4 text-gray-500 w-full">
+            <div className="flex flex-row justify-between justify-items-center items-center mb-4 text-gray-500 w-full px-5">
                 <ChevronLeftIcon width={18} height={18} className="flex-none w-4 h-4 hover:cursor-pointer" onClick={prevMonth} />
-                <p className="grow text-center font-semibold">{getMonthFullName()} {previewYear}</p>
+                <p className="grow text-center text-sm font-semibold">{getMonthFullName()} {previewYear}</p>
                 <ChevronRightIcon width={18} height={18} className="flex-none w-4 h-4 hover:cursor-pointer" onClick={nextMonth} />
             </div>
             <div className="grid grid-cols-7 justify-items-center w-full">
                 {
                     days.map(day => {
                         return(
-                            <div key={day} className="font-semibold text-gray-700 mb-2">{day}</div>
+                            <div key={day} className="font-semibold text-gray-700 mb-2 text-xs">{day}</div>
                         )
                     })
                 }
                 {
                     formatCurrentMonth(previewMonth, previewYear).map((d,i) => {
-                        if(!d) return
+                        if(!d) return(
+                            <div className="w-10 h-10" key={i}></div>
+                        )
 
                         const processingDate = new Date(previewYear, previewMonth - 1, d)
 

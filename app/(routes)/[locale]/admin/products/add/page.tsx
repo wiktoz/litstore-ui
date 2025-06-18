@@ -7,8 +7,17 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { resolver } from "@/app/validations/ProductDetails"
 import Checkbox from "@/app/components/forms/Checkbox"
-import Calendar from "@/app/components/forms/Calendar"
+import RangeCalendar from "@/app/components/forms/RangeCalendar"
 import ContentOnCheckbox from "@/app/components/forms/ContentOnCheckbox"
+import { ClockIcon } from "@heroicons/react/24/outline"
+
+const getDateOnly = (date:Date): string => {
+    return date.toLocaleDateString('pl-PL', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    })
+}
 
 const InsertProductPage = () => {
     const [files, setFiles] = useState<File[]>([])
@@ -17,7 +26,7 @@ const InsertProductPage = () => {
     const [isNew, setIsNew] = useState<boolean>(false)
     const [isActive, setIsActive] = useState<boolean>(true)
 
-    const [startDate, setStartDate] = useState<Date | null>(null)
+    const [startDate, setStartDate] = useState<Date | null>(new Date())
     const [endDate, setEndDate] = useState<Date | null>(null)
 
     const [isDateRange, setIsRangeDate] = useState<boolean>(false)
@@ -27,8 +36,8 @@ const InsertProductPage = () => {
     return(
         <div className="flex flex-col gap-4">
             <Header/>
-            <div className="flex flex-col md:flex-row gap-4">
-                <div className="flex flex-col w-full md:w-1/2 rounded-xl bg-white p-6 h-fit">
+            <div className="flex flex-col lg:flex-row gap-4">
+                <div className="flex flex-col w-full lg:w-1/2 rounded-xl bg-white p-6 h-fit">
                     <div className="mb-6">
                         <h1 className="font-bold">Details</h1>
                         <p className="text-gray-600 text-xs">Key info to describe and display your product.</p>
@@ -88,16 +97,63 @@ const InsertProductPage = () => {
                         />
 
                         <ContentOnCheckbox isChecked={isDateRange}>
-                        <div className="flex flex-col w-80">
-                            <Calendar
-                                startDate={startDate}
-                                setStartDate={setStartDate}
-                                endDate={endDate}
-                                setEndDate={setEndDate}
-                            />
-                            <p>Od: { startDate && startDate.toLocaleString()}</p>
-                            <p>Do: { endDate && endDate.toLocaleString()}</p>
-                        </div>
+                            <p className="text-xs text-gray-700 font-medium mx-1">Availability dates</p>
+                            <div className="flex flex-col 2xl:flex-row justify-center items-center my-2 border rounded-xl bg-gray-50">
+                                <div className="2xl:w-7/12 rounded-xl bg-white">
+                                    <div className="p-5">
+                                        <RangeCalendar
+                                            startDate={startDate}
+                                            setStartDate={setStartDate}
+                                            endDate={endDate}
+                                            setEndDate={setEndDate}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="2xl:w-5/12 flex flex-col gap-4 py-4">
+                                {
+                                    startDate &&
+                                    <div className="px-5"> 
+                                        <div className="font-semibold text-sm">
+                                            od
+                                        </div>
+                                        <div className="flex gap-2 items-center text-sm">
+                                            <div className="text-3xl font-thin">
+                                                {startDate.getDate()}
+                                            </div>
+                                            <div className="leading-none flex flex-col grow">
+                                                <p>{startDate.toLocaleString("pl-PL", { month: 'long' })} {startDate.getFullYear()}</p>
+                                                <p className="text-gray-500">{startDate.toLocaleDateString("pl-PL", { weekday: 'long' })}</p>
+                                            </div>
+                                            <div className="ml-2 flex items-center justify-center border rounded-xl p-2 cursor-pointer gap-1.5">
+                                                <ClockIcon width={20} height={20}/>
+                                                <p>{startDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                {
+                                    endDate &&
+                                    <div className="px-5">
+                                        <div className="font-semibold text-sm">
+                                            do
+                                        </div>
+                                        <div className="flex gap-2 items-center text-sm">
+                                            <div className="text-3xl font-thin">
+                                                {endDate.getDate()}
+                                            </div>
+                                            <div className="leading-none flex flex-col grow">
+                                                <p>{endDate.toLocaleString("pl-PL", { month: 'long' })} {endDate.getFullYear()}</p>
+                                                <p className="text-gray-500">{endDate.toLocaleDateString("pl-PL", { weekday: 'long' })}</p>
+                                            </div>
+                                            <div className="ml-2 flex items-center justify-center border rounded-xl p-2 cursor-pointer gap-1.5">
+                                                <ClockIcon width={20} height={20}/>
+                                                <p>12:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                </div>
+                            </div>
                         </ContentOnCheckbox>
                         
                     </form>
