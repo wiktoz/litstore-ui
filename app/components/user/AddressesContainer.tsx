@@ -14,7 +14,7 @@ const AddressesContainer = () => {
             {
                 isAddressLoading ? <Spinner/> :
                 addressesError ? <Error error={addressesError}/> :
-                addresses && addresses.length === 0 ? <p className="text-center py-6 text-gray-800">No addresses to show</p> :
+                addresses && addresses.length === 0 ? <p className="text-center py-6 text-gray-800 text-sm">No addresses to show</p> :
 
                 addresses && addresses.length > 0 &&
                 <div className="flex flex-col gap-4 w-full divide-y divide-gray-300">

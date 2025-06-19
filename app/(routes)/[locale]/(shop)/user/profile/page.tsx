@@ -3,7 +3,7 @@ import AddressesContainer from "@/app/components/user/AddressesContainer"
 const UserPage = () => {
     
     return(
-        <div className="flex flex-row gap-20">
+        <div className="flex flex-row gap-6">
             <div className="w-1/4 bg-white rounded-xl p-8 h-full">
                 <p className="text-gray-800 font-bold">My Account</p>
                 <div className="h-px rounded-full bg-gray-300 my-2"></div>
@@ -13,7 +13,7 @@ const UserPage = () => {
                     <p>Settings</p>
                 </div>
             </div>
-            <div className="w-full">
+            <div className="w-full rounded-xl p-8 bg-white">
                 <h1 className="text-gray-800 font-bold text-xl mb-4">Address List</h1>
                 <div className="h-px rounded-full bg-gray-300 my-2"></div>
                 <AddressesContainer/>

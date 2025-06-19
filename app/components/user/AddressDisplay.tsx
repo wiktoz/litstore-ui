@@ -29,7 +29,7 @@ const AddressDisplay = ({id, name, surname, street, house, flat, post_code, city
     }
 
     return(
-        <div className="py-4 flex gap-12 items-center">
+        <div className="p-4 flex gap-12 items-center">
             <div className="text-gray-600 text-sm w-2/5">
                 <p className="font-semibold text-gray-900 mb-2">{name} {surname}</p>
                 <p>{street} {house}{flat && ("/" + flat)}</p>

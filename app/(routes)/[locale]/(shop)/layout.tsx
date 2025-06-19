@@ -17,7 +17,7 @@ export default function ShopLayout({children}:{children: ReactElement}) {
                                 <Navbar transparency={false}/>
                             </div>
 
-                            <div className="grow m-auto flex flex-col justify-center px-2 py-8 container min-h-[50vh]">
+                            <div className="grow m-auto flex flex-col justify-center p-8 container min-h-[50vh]">
                                 {children}
                             </div>
                             <Footer/>

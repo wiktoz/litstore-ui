@@ -55,7 +55,7 @@ interface VariantInterface {
     readonly id: string
     display_name: string,
     select_type: string,
-    options: [VariantOptionInterface]
+    options: VariantOptionInterface[]
 }
 
 interface BuyerInterface extends AddressInterface {

@@ -19,7 +19,7 @@ const OptionSelect = ({variant, pickOption, checkStock}:Props) => {
         <AnimatePresence>
         <motion.div className={"relative w-full transition-all h-12"} onClick={() => setOpen(!open)} onBlur={() => setOpen(false)}>
             <motion.div
-                className={"flex flex-row items-center p-2 px-4 text-sm text-gray-500 border border-black hover:cursor-pointer "
+                className={"flex flex-row items-center p-2 px-4 text-sm text-gray-500 bg-gray-50 border border-black hover:cursor-pointer "
                     + (open ? "rounded-t-lg border-b-0" : "rounded-lg")}>
                 <div className={"grow"}>
                 {
@@ -45,7 +45,7 @@ const OptionSelect = ({variant, pickOption, checkStock}:Props) => {
             {
                 open && (
                 <motion.div
-                    className={"absolute bg-white z-50 w-full border border-black rounded-b-lg text-xs flex flex-col gap-1"}
+                    className={"absolute bg-white z-50 p-1 w-full border border-black rounded-b-lg text-xs flex flex-col gap-1"}
                     initial={{ opacity: 0, height: 0, y: 0 }}
                     animate={{
                         opacity: 1,
@@ -60,13 +60,13 @@ const OptionSelect = ({variant, pickOption, checkStock}:Props) => {
                 {
                     variant.options.map(option => {
                         return(
-                            <motion.div key={option.id} className={"mx-1"}>
+                            <motion.div key={option.id}>
                                 {
                                     checkStock(variant.id, option.id) > 0 ?
                                         pickedOption && option.id === pickedOption.id ?
                                             <motion.div className={"flex flex-row items-center justify-between p-2 px-4 rounded-lg bg-black text-white font-semibold hover:cursor-pointer"}>
                                                 <div>{option.name}</div>
-                                                <div><CheckIcon width={12} height={12}/></div>
+                                                <div><CheckIcon width={14} height={14}/></div>
                                             </motion.div> :
 
                                             <motion.div

@@ -20,3 +20,8 @@ interface ProductInsertFormInterface {
     active: boolean,
     date_range: boolean,
 }
+
+interface VariantInsertFormInterface {
+    name: string,
+    display_name: string,
+}

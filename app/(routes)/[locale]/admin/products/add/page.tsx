@@ -9,7 +9,8 @@ import { resolver } from "@/app/validations/ProductDetails"
 import Checkbox from "@/app/components/forms/Checkbox"
 import RangeCalendar from "@/app/components/forms/RangeCalendar"
 import ContentOnCheckbox from "@/app/components/forms/ContentOnCheckbox"
-import { ClockIcon } from "@heroicons/react/24/outline"
+import { ClockIcon, PlusIcon } from "@heroicons/react/24/outline"
+import Button from "@/app/components/buttons/Button"
 
 const getDateOnly = (date:Date): string => {
     return date.toLocaleDateString('pl-PL', {
@@ -35,9 +36,13 @@ const InsertProductPage = () => {
 
     return(
         <div className="flex flex-col gap-4">
-            <Header/>
+            <Header
+                icon={<PlusIcon width={26} height={26}/>}
+                title={"Insert Product"}
+                description={"Welcome to your product editor — where adding something new is quick, simple, and seamless. Just fill in the essentials, and your next bestseller is ready to shine."}
+            />
             <div className="flex flex-col lg:flex-row gap-4">
-                <div className="flex flex-col w-full lg:w-1/2 rounded-xl bg-white p-6 h-fit">
+                <div className="flex flex-col w-full lg:w-3/5 rounded-xl bg-white p-6 h-fit">
                     <div className="mb-6">
                         <h1 className="font-bold">Details</h1>
                         <p className="text-gray-600 text-xs">Key info to describe and display your product.</p>
@@ -155,10 +160,9 @@ const InsertProductPage = () => {
                                 </div>
                             </div>
                         </ContentOnCheckbox>
-                        
                     </form>
                 </div>
-                <div className="flex flex-col w-full md:w-1/2 rounded-xl bg-white p-6 h-fit">
+                <div className="flex flex-col w-full lg:w-2/5 rounded-xl bg-white p-6 h-fit">
                     <div className="mb-6">
                         <h1 className="font-semibold">Images</h1>
                         <p className="text-gray-600 text-xs">Stunning visuals that bring your product to life.</p>
@@ -166,7 +170,9 @@ const InsertProductPage = () => {
                     <FileUpload files={files} setFiles={setFiles} multiple={true} />
                 </div>
             </div>
-            
+            <Button>
+                    Add Product
+                </Button>
             
         </div>
     )

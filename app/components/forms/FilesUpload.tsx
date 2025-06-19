@@ -71,7 +71,7 @@ const FileUpload = ({title, files, setFiles, multiple}:FileUploadInterface) => {
                             <PhotoIcon width={20} height={20}/>
                             Drop your image here
                         </div> :
-                        <div className={"py-4 px-2 flex flex-col items-center gap-2 text-gray-700"}>
+                        <div className={"py-4 px-2 flex flex-col items-center gap-2 text-gray-700 text-center"}>
                             <PhotoIcon width={20} height={20}/>
                             <p>Drop your image here, or <span className="font-semibold">click to browse</span></p>
                         </div>

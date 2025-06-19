@@ -18,8 +18,8 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const disabled = !isActive || isLoading;
 
-  const className = `w-full group relative my-4 flex justify-center rounded-md border border-transparent bg-[#222] py-2 px-4 text-sm font-semibold text-white focus:outline-none ${
-    disabled ? 'opacity-70 hover:cursor-default hover:bg-[#111]' : ''
+  const className = `w-full group relative my-4 flex justify-center rounded-xl border border-transparent bg-[#222] hover:bg-[#111] py-2 px-4 text-sm font-semibold text-white focus:outline-none ${
+    disabled ? 'opacity-70 hover:cursor-default' : ''
   }`;
 
   const content = (

@@ -145,7 +145,7 @@ export default function Sidebar() {
             </div>
 
             {/* Sidebar for medium and larger screens */}
-            <div className="hidden md:block md:sticky top-0 h-screen w-80 bg-gray-800 text-white shadow overflow-auto">
+            <div className="hidden md:block md:sticky top-0 h-screen w-full bg-gray-800 text-white shadow overflow-auto">
                 <div className="mx-4 my-2 flex flex-col gap-3">
                     <div className="text-xl font-bold leading-6 my-4 mx-1">
                         <Link href="/admin">
